@@ -20,7 +20,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Compile the paper and bibliography
-        uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcecc6c1b
+        uses: xu-cheng/latex-action@4.1.0
         with:
           root_file: manuscript.tex
           working_directory: paper
