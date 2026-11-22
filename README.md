@@ -3,6 +3,7 @@
 [![Repository verification](https://github.com/DannyExperiments/dense-polynomial-sparse-square/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/DannyExperiments/dense-polynomial-sparse-square/actions/workflows/verify.yml)
 [![Partial Lean verification](https://github.com/DannyExperiments/dense-polynomial-sparse-square/actions/workflows/lean.yml/badge.svg?branch=main)](https://github.com/DannyExperiments/dense-polynomial-sparse-square/actions/workflows/lean.yml)
 [![PDF build](https://github.com/DannyExperiments/dense-polynomial-sparse-square/actions/workflows/pdf.yml/badge.svg?branch=main)](https://github.com/DannyExperiments/dense-polynomial-sparse-square/actions/workflows/pdf.yml)
+[![DOI reserved for private draft](.github/badges/doi-reserved.svg)](https://zenodo.org/uploads/24443729)
 
 Can an integer polynomial of degree n have a nonzero coefficient in every position while its square has fewer than √n nonzero coefficients? **Yes.** The paper specifies one finite polynomial by 128 compact factors. Its square has strictly fewer than 0.501√n nonzero coefficients. The degree has 5,798 decimal digits.
 
@@ -29,3 +30,7 @@ From the repository root, run the following with Python 3 and a POSIX shell. The
 ```
 
 Epoch asks for an expanded JSON array of all n+1 coefficients. The compact witness and mathematical proofs are available here. The expanded array has not been produced or submitted. Independent human peer review and Epoch acceptance are outstanding.
+
+## Citation
+
+DannyExperiments. *Dense integer polynomials with sparse squares*. Version 1.0.0, unpublished preprint. Zenodo has reserved the version DOI `10.5281/zenodo.24443729`. [Citation metadata](CITATION.cff) · [Private Zenodo draft](https://zenodo.org/uploads/24443729)

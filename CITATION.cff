@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "Private preprint draft. The version DOI is reserved. Zenodo registration is pending publication."
+title: "Dense integer polynomials with sparse squares"
+version: "1.0.0"
+authors:
+  - name: "DannyExperiments"
+repository-code: "https://github.com/DannyExperiments/dense-polynomial-sparse-square"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.24443729"
+    description: "Reserved for the unpublished Zenodo version 1.0.0 draft."
+keywords:
+  - dense integer polynomials
+  - sparse polynomial squares
+  - cyclic convolution
