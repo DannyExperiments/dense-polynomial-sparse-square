@@ -25,7 +25,7 @@ Each local factor rules out an interval of residue classes for the exponents in 
 
 | Material | Purpose |
 | --- | --- |
-| [Original audited proof and certificate](proof/) | The manuscript reviewed by the referee, the 128 sparse numerators, the exact degree and the supplied verification programs. |
+| [Original audited proof and certificate](proof/) | The reviewed manuscript with its model credit updated, the 128 sparse numerators, the exact degree and the supplied verification programs. |
 | [Independent audit and source archives](evidence/) | The AI referee's report, separately written checker and recorded results. Its mathematical verdict concerns the archived manuscript. |
 | [Lean formalization](formalization/) | General coefficient and residue lemmas, and exact arithmetic for the final certificate. The paper supplies the derivation of the support bound for the constructed polynomial. |
 
