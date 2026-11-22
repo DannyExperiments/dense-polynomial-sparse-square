@@ -1,0 +1,231 @@
+\documentclass[10pt,a4paper,reqno]{amsart}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amssymb}
+% Type 1 Latin Modern and Computer Modern fonts in the offline TeX bundle.
+\usepackage[T1]{fontenc}
+\renewcommand{\rmdefault}{lmr}
+\renewcommand{\ttdefault}{lmtt}
+\DeclareFontFamily{T1}{lmr}{}
+\DeclareFontShape{T1}{lmr}{m}{n}{<-> ec-lmr10}{}
+\DeclareFontShape{T1}{lmr}{bx}{n}{<-> ec-lmbx10}{}
+\DeclareFontShape{T1}{lmr}{m}{it}{<-> ec-lmri10}{}
+\DeclareFontFamily{T1}{lmtt}{}
+\DeclareFontShape{T1}{lmtt}{m}{n}{<-> ec-lmtt10}{}
+\DeclareFontShape{T1}{lmr}{m}{sc}{<-> ec-lmcsc10}{}
+\DeclareFontShape{T1}{lmr}{b}{n}{<-> ec-lmbx10}{}
+\DeclareFontShape{OT1}{cmr}{m}{n}{<->cmr10}{}
+\DeclareFontShape{OT1}{cmr}{bx}{n}{<->cmbx10}{}
+\DeclareFontFamily{OML}{cmm}{}
+\DeclareFontShape{OML}{cmm}{m}{it}{<->cmmi10}{}
+\DeclareFontFamily{OMS}{cmsy}{}
+\DeclareFontShape{OMS}{cmsy}{m}{n}{<->cmsy10}{}
+
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Dense integer polynomials with sparse squares},
+  pdfauthor={},pdfsubject={An explicit polynomial below the square-root support bound}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\ind}{\mathbf1}
+\title[Dense polynomials with sparse squares]{Dense integer polynomials with sparse squares}
+\date{November 22, 2026}
+\keywords{dense polynomial, lacunary square, cyclic convolution, finite differences}
+\begin{document}
+\begin{abstract}
+We construct a dense polynomial $P\in\ZZ[x]$ of degree $n$ such that $P^2$ has fewer than $0.501\sqrt n$ nonzero coefficients. This answers the strict square-root question posed in FrontierMath. Each of 128 local factors omits a middle interval of residue classes in its ordinary square, and the Chinese remainder theorem multiplies the savings. A dense correction at the two ends of a repeated polynomial preserves the saving because a fourth difference of every local factor has bounded support. The witness has a 5,798-digit degree and admits a finite certificate in sparse integer data.
+\end{abstract}
+\maketitle
+
+\section{The square-root question}
+For a nonzero polynomial $F$, let $\wt(F)$ be the number of its nonzero coefficients. Call $F$ \emph{dense} if $\wt(F)=1+\deg F$. Epoch AI asks whether there exists a dense integer polynomial of degree $n$ whose square has \emph{strictly fewer} than $\sqrt n$ nonzero coefficients~\cite{epoch}. The distinction between a square-root estimate and the constant in that estimate matters here. Elgamal's cyclic construction gives a square-root bound with leading constant $4\sqrt3$ and discusses the strict question explicitly~\cite{elgamal}. Two published examples in Wesley's data~\cite{wesley} have respectively $1{,}205$ and $12{,}005$ terms in the square at degrees $30{,}703$ and $3{,}007{,}003$. Both exceed the strict threshold. A search of the public literature through November 22, 2026 located no earlier example satisfying it.
+
+\begin{theorem}\label{main}
+There is an explicitly specified dense polynomial $P\in\ZZ[x]$ of degree $n$ such that
+\[
+                \wt(P^2)<\frac{501}{1000}\sqrt n.
+\]
+In particular $\wt(P^2)^2<n$.
+\end{theorem}
+
+The construction starts with a polynomial $A$ whose cyclic coefficients modulo $N$ are all nonzero. Its square has the form $c+(1-x^N)^2Q$. Multiplication by a geometric sum then gives a long periodic interior, while the factor $(1-x^N)^2$ prevents the error in the square from spreading through the repetitions. Two obstructions remain. The quotient $Q$ must occupy few residue classes, and $A$ may have gaps near both ends. We impose exact vanishing on whole sections of each local square in Section~\ref{sec:local}. The same local factors have sparse fourth differences, which keep the cost of filling the two ends below the required threshold.
+
+Throughout, $I_m(z)=1+z+\cdots+z^{m-1}$, and $\|F\|_1$ is the sum of the absolute values of the coefficients, also for Laurent polynomials. A \emph{cyclic coefficient} of $F$ modulo $v$ is the sum of its ordinary coefficients in one residue class. We use the subadditivity and submultiplicativity of $\wt$.
+
+\section{A local square with forbidden residues}\label{sec:local}
+\begin{lemma}\label{local}
+For every prime $v>100$, let $R=\{r\in\ZZ:v/3<r<2v/3\}$. There is an explicit $B_v\in\ZZ[z]$ of degree less than $9v$ with all cyclic coefficients nonzero modulo $v$, such that
+\[
+ B_v^2\equiv B_v(1)^2\pmod{(1-z^v)^2},\qquad B_v(1)\ne0 .
+\]
+Every ordinary coefficient of $B_v^2$ at an exponent congruent to a member of $R$ is zero. Moreover $\wt((1-z)^4B_v)\le10^6$ and $\|B_v\|_1\le v^{21}$.
+\end{lemma}
+
+\begin{proof}
+Write $m=|R|$, $y=z^v$, and seek $B_v$ in the form $\sum_{j=0}^{v-1}z^j b_j(y)$. We first work over $\QQ(y)$. The desired initial values are $s_j=v\ind_{j=0}-2$. They are all nonzero and their cyclic square equals $v^2$ at zero and vanishes elsewhere, since $I_v^2\equiv v I_v\bmod(1-z^v)$. In particular $\sum_j s_j=-v$.
+
+\smallskip\noindent\emph{The linear system.}
+Put $b_0=v-2$. For $0<d<m$ set $b_d=-2(1-d(y-1)/v)$, and for $-m<d<0$ set $b_{v+d}=-2y^{-1}(1-d(y-1)/v)$. These indices lie outside $R$. At the remaining indices outside $R$ set $b_j=s_j(1-j(y-1)/v)$. On all free indices we now have
+\begin{equation}\label{jet}
+                 b_j(1)=s_j,\qquad b'_j(1)=-js_j/v.
+\end{equation}
+For $r\in R$, the section of the square that we require to vanish is
+\[
+ E_r(y)=\sum_{\substack{0\le i,j<v\\i+j\equiv r\bmod v}}
+                   y^{\lfloor(i+j)/v\rfloor}b_i(y)b_j(y).
+\]
+The sum of two elements of $R$ lies strictly between $2v/3$ and $4v/3$, and hence outside $R$ modulo $v$. The equations $E_r=0$ are therefore linear in $w=(b_s)_{s\in R}$. They read $2Mw=-g$, where $g$ collects the terms with two free indices. When $s>r$ the factor $y^{-1}$ in $b_{v+r-s}$ cancels the carry in $E_r$. Consequently
+\[
+                  M_{rs}=v\ind_{r=s}-2+\frac{2(r-s)}v(y-1).
+\]
+At $y=1$ this is $vI-2J$, with $J$ the all-ones matrix. Its eigenvalues $v$ and $v-2m$ are nonzero. The solution is regular at $1$. The proposed values in \eqref{jet} satisfy $E_r(1)=0$ by the cyclic-square identity. With the proposed derivatives, each differentiated summand has value $-(r/v)s_i s_j$, since $\lfloor(i+j)/v\rfloor=(i+j-r)/v$. Their sum vanishes, so the same invertible matrix gives \eqref{jet} on $R$ as well.
+
+\smallskip\noindent\emph{Clearing denominators.}
+Write $M=vI+UV^\top$, with row $r$ of $U$ equal to $(1,r)$ and column $s$ of $V^\top$ equal to $(-2-2s(y-1)/v,\ 2(y-1)/v)^\top$. For $C=I_2+V^\top U/v$ and $d=y^2\det C$, direct multiplication yields
+\begin{equation}\label{inverse}
+ M^{-1}=v^{-1}I-v^{-2}U\operatorname{adj}(C)V^\top/\det C.
+\end{equation}
+Here $\det C(1)=1-2m/v\ne0$. The powers in $g$ range from $-2$ to $3$, and both $\det C$ and $\operatorname{adj}(C)V^\top$ have degree at most $2$. Thus $db_j$ is polynomial of degree at most $7$. The numerical denominators of the free sections divide $v$; those of $g,C,\operatorname{adj}(C)$ divide $v^2$, entrywise; and those of $\det C$ divide $v^4$. Equation~\eqref{inverse} then gives denominator dividing $2v^7$ for every $db_j$.
+
+Multiply each section by
+\[
+             2v^{11}d(y)\{d(1)-d'(1)(y-1)\}.
+\]
+The resulting sections are integral of degree at most $8$. They specify $B_v$ and give $\deg B_v<9v$. The multiplier is nonzero at $1$ and has derivative zero there. It scales both components of \eqref{jet} by the same constant and preserves $E_r=0$ identically. At each $v$th root of unity $\xi$, the cyclic-square identity gives $B_v(\xi)^2=B_v(1)^2>0$. Also $B_v'(\xi)=0$ by $jb_j(1)+vb'_j(1)=0$ on every section. The roots are distinct, giving the asserted double divisibility.
+
+\smallskip\noindent\emph{Height and fourth differences.}
+The free sections have norm at most $v$, so $\|g_r\|_1\le v^3$. The entries of $U,V^\top,C,\operatorname{adj}(C)$ have respective norms at most $v,6,7v,7v$. Hence $\|\det C\|_1\le100v^2$, and the entries of $U\operatorname{adj}(C)V^\top$ have norm at most $168v^2$. Substitution into \eqref{inverse}, summing at most $v$ entries in the correction, gives $\|db_j\|_1\le134v^4$ on all sections. As $\deg d\le4$, the remaining linear factor has norm at most $900v^2$. Thus $\|B_v\|_1\le241200v^{18}\le v^{21}$.
+
+Let $f_j$ agree with the free sections and vanish on $R$ and outside $[0,v-1]$. It is affine in $j$ on at most six nonzero intervals. In its ordinary convolution $f*f$, a pair of intervals $[a,b],[c,e]$ contributes at index $k$ a sum from $\max(a,k-e)$ to $\min(b,k-c)$. The summand has total degree at most two in the summation index and $k$. Summation of powers up to the second gives a cubic in $k$ wherever the active endpoints are fixed affine functions and the interval is nonempty. Each interval pair introduces at most eight breakpoints, including entry and exit. Since $g_r=(f*f)_r+y(f*f)_{r+v}$, the 36 pairs introduce at most $576$ breakpoints. In \eqref{inverse} the correction through $U$ is affine in $r$. Clearing denominators uses the same scalar throughout. In each of the nine possible $y$-layers the ordinary coefficients are therefore piecewise cubic in $r$ with fewer than $600$ pieces, including the free intervals. A fourth backward difference vanishes when its five inputs belong to the same piece. At most four indices per boundary, including the zero tails, can survive, giving $\wt((1-z)^4B_v)<10^6$.
+\end{proof}
+
+\section{Combining the residue restrictions}\label{sec:crt}
+Fix $t=128$ pairwise distinct primes $v_i>10^{20}$, specified below. Write $N=\prod_i v_i$ and $e_i=N/v_i$, and put
+\[
+ A=\prod_i B_{v_i}(x^{e_i}),\qquad H=\prod_i(1-x^{e_i})^4,\qquad D=1-x^N .
+\]
+Lemma~\ref{local} gives $\deg A<9tN$, $\deg H=4\sum_i e_i\le4tN$, $\|A\|_1\le N^{21}$, $\wt(AH)\le(10^6)^t$ and $\wt(H^2)\le9^t$. Since each $1-(x^{e_i})^{v_i}$ equals $D$, there is a $Q\in\ZZ[x]$ such that
+\begin{equation}\label{identity}
+                 A^2=c+D^2Q,\qquad c=\prod_i B_{v_i}(1)^2.
+\end{equation}
+The Chinese remainder theorem makes $(j_i)\mapsto\sum_i e_i j_i\bmod N$ a bijection from the product of the local residue sets onto $\ZZ/N\ZZ$. At its image the cyclic coefficient of $A$ is the product of the local cyclic coefficients, hence is nonzero.
+
+In $A^2$, the factor at $i$ restricts the exponent modulo $v_i$ to $e_i((\ZZ/v_i\ZZ)\setminus R_i)$, where $R_i$ is the forbidden set of Lemma~\ref{local}. All other factors have exponents divisible by $v_i$. The allowed fraction is at most $7/10$ since $v_i>100$. Zero is allowed by every factor. Thus subtracting $c$ leaves forbidden sections identically zero, and dividing by $D^2$ preserves them because the expansion of $D^{-2}$ has support in multiples of $N$. By the Chinese remainder theorem at most $N(7/10)^t$ residues survive. Since $\deg Q\le18tN$, we obtain
+\begin{equation}\label{qbound}
+                         \wt(Q)\le(18t+1)N(7/10)^t .
+\end{equation}
+
+For reproducibility, examine the odd integers $u=7,9,11,\dots$ in order and put $v=u2^{64}+1$. Retain the first 128 values for which some $a\in\{3,5,7,11,13,17,19,23\}$ satisfies $a^{(v-1)/2}\equiv-1\bmod v$. The accompanying integer table verifies this congruence and $u<2^{64}$ for every retained entry. For a prime divisor $q$ of $v$, the order of $a$ modulo $q$ divides $v-1$ but does not divide $(v-1)/2$, hence contains the factor $2^{64}$. Thus $q\ge2^{64}+1>\sqrt v$, proving primality. Their product $N$ has 2,901 decimal digits.
+
+\section{Filling the endpoints}\label{sec:end}
+The geometry of $A$ leaves gaps at low degrees and near its degree. We first construct the dense polynomial that will fill them. This auxiliary use of a cyclic square and its first-order lift follows the construction of Elgamal~\cite{elgamal}.
+
+\begin{lemma}\label{filler}
+For $b\ge3$ define
+\[
+ K_b(z)=b^2-2I_b(z)^2[b-(b-1)z]+(1-z^b)^2,\qquad V=K_b(z)I_b(z^b).
+\]
+Then $V$ is dense of degree $T=b(b+1)$, and
+\[
+ \wt(V^2)\le8b+2,\qquad \wt((1-z)^2V)\le18b,\qquad \|V\|_1\le6b^4.
+\]
+\end{lemma}
+\begin{proof}
+At a nontrivial $b$th root of unity, $K_b=b^2$ and $K'_b=0$. At $1$ these values are $-b^2$ and $0$, respectively, using $I_b'(1)=b(b-1)/2$. Therefore $K_b^2=b^4+(1-z^b)^2Q_b$ with $\deg Q_b\le2b$. Multiplication by $I_b(z^b)^2$ bounds the weight by $(2b-1)+3(2b+1)$. The three summands in $(1-z)^2K_b$ have at most $3$, $6$ and $9$ terms, since $(1-z)^2I_b(z)^2=(1-z^b)^2$. Multiplication by $I_b(z^b)$ gives the second bound. Submultiplicativity gives $\|V\|_1\le b[b^2+2b^2(2b-1)+4]\le6b^4$.
+
+In each nonzero residue $j\bmod b$, the successive coefficients of $V$ begin at $-2(b+j)$, are $-2b$ on the interior blocks, and end at $2j$. Indeed the two coefficients of $K_b$ in that residue are $-2(b+j)$ and $2j$. In residue zero one convolves $((b-1)^2,-2,1)$ with $b$ ones. Writing $h=(b-1)^2$, the result begins $h,h-2$, has interior value $h-1$, and ends $-1,1$. All entries are nonzero for $b\ge3$, including the coefficient at $b(b+1)$.
+\end{proof}
+
+We now specify the witness. Choose $b=\lceil\sqrt{(14t+3)N}\rceil$ and use $V,T$ from Lemma~\ref{filler}. Define
+\begin{align*}
+ E&=DH, & a&=N^{21}, & \lambda&=2+12\cdot16^t b^4+2a,\\
+ L&=(1-\lambda x)^2, & W&=V(\lambda x), & \alpha&=1+(1+\lambda)^2a.
+\end{align*}
+From $\|E\|_1\le2\cdot16^t$ and Lemma~\ref{filler} it follows that $\lambda>1+\max(\|E\|_1\|V\|_1,2\|A\|_1)$; also $\alpha>\|LA\|_1$. Set $M=\lfloor N/400\rfloor$ and put
+\begin{equation}\label{witness}
+             A_*=LA+\alpha D^2HW,\qquad P=A_* I_M(x^N).
+\end{equation}
+These definitions specify an integer polynomial without a search for scaling parameters.
+
+\begin{proposition}\label{dense}
+The polynomial \eqref{witness} is dense. Its degree is
+\begin{equation}\label{degree}
+                n=MN+N+4\sum_i e_i+b(b+1).
+\end{equation}
+\end{proposition}
+\begin{proof}
+The useful expansion for density is
+\begin{equation}\label{ends}
+        P=LA I_M(x^N)+\alpha(1-x^{MN})F,\qquad F=EV(\lambda x).
+\end{equation}
+Let $d=\deg E$, $w=d+T$, and let $E_i,V_k$ denote coefficients. Both $E_0$ and $E_d$ are nonzero. The choice of $b$ implies $T\ge d$ and $T\ge\deg(LA)$, from $d\le(4t+1)N$ and $\deg(LA)<9tN+2$. For $0\le j\le T$, the coefficient of $x^j$ in $EV(Zx)$ contains $E_0 V_jZ^j$. For $T<j\le T+d$, it contains $E_dV_{j-d} Z^{j-d}$, where $0\le j-d\le T$. Each power of $Z$ occurs only once in that coefficient. Thus the coefficient polynomial is nonzero and its coefficients have magnitude at most $\|E\|_1\|V\|_1$. The same argument in the cyclic algebra gives a nonzero coefficient polynomial for each residue of $(1-Zx)^2A$: its constant term is the nonzero cyclic coefficient of $A$, and each coefficient in $Z$ has magnitude at most $2\|A\|_1$. A nonzero integer polynomial with coefficients of absolute value at most $B$ has no root of magnitude greater than $1+B$, by domination of its leading term. Our choice of $\lambda$ makes $F$ dense and all cyclic coefficients of $LA$ nonzero.
+
+Here $\deg(LA)\le w<MN$, since $T<2600N$, $d\le(4t+1)N$ and $M>4000$. On each closed interval $[0,w]$ and $[MN,MN+w]$ the correction in \eqref{ends} therefore contributes a nonzero integer of absolute value at least $\alpha$. The intervals are disjoint, and the other summand has every coefficient bounded by $\|LA\|_1<\alpha$. For $w<j<MN$, every exponent $i$ of $LA$ congruent to $j\bmod N$ satisfies $0\le(j-i)/N<M$; hence the coefficient of the first summand is exactly the nonzero cyclic coefficient of $LA$. The correction is zero throughout that open interval. Finally $\deg(LA)+(M-1)N\le w+(M-1)N<MN+w$. This proves density through the last endpoint and gives \eqref{degree}.
+\end{proof}
+
+\section{Counting the square}\label{sec:count}
+\begin{proof}[Proof of Theorem~\ref{main}]
+Squaring \eqref{witness} before repetition and using \eqref{identity} gives
+\[
+ A_*^2=cL^2+D^2Q_*,\qquad
+ Q_*=L^2Q+2\alpha(AH)(LW)+\alpha^2 D^2H^2W^2 .
+\]
+The factor $LW$ is $(1-z)^2V(z)$ evaluated at $z=\lambda x$. The bounds for $AH$ and $H^2$, together with Lemma~\ref{filler}, therefore give
+\begin{equation}\label{qstar}
+ \wt(Q_*)\le5(18t+1)N(7/10)^t+18b(10^6)^t+3(8b+2)9^t<N/400 .
+\end{equation}
+For the last inequality use $N>10^{2560}$, $b<50\sqrt N$, $(7/10)^{128}<10^{-19}$, $(10^6)^{128}=10^{768}$ and $9^{128}<10^{128}$. After repetition the square is
+\[
+                  P^2=cL^2 I_M(x^N)^2+(1-x^{MN})^2Q_* .
+\]
+Its weight is at most $5(2M-1)+3\wt(Q_*)<13N/400$. Since $M\ge N/800$ and $(13/400)^2<1/800$, we already have $\wt(P^2)^2<MN\le n$.
+
+For the stated constant one can use the same estimates. Dividing \eqref{qstar} by $N$, its first summand is less than $2\cdot10^{-15}$; the other two together are less than $10^{-400}$ by the displayed bounds on $N,b$. Thus $\wt(Q_*)<10^{-14}N$. As $N>10^{2560}$, we have $M>N/400-N/10^8$. Consequently
+\[
+ \frac{\wt(P^2)^2}{n}<
+ \frac{(1/40+3\cdot10^{-14})^2}{1/400-10^{-8}}
+ <\left(\frac{501}{1000}\right)^2 ,
+\]
+where the last comparison is rational arithmetic. Proposition~\ref{dense} supplies density. The integer certificate checks the same inequality directly at the degree in \eqref{degree}.
+\end{proof}
+
+\begin{corollary}\label{powers}
+There is a fixed $\theta<1/2$ and a sequence of dense integer polynomials $P_h$ of unbounded degrees $n_h$ such that $\wt(P_h^2)\le(n_h+1)^\theta$.
+\end{corollary}
+\begin{proof}
+Take $n=\deg P$, $k=\wt(P^2)$ and $\theta=\log k/\log(n+1)$. For $h\ge1$ put $P_h(x)=\prod_{i=0}^{h-1}P(x^{(n+1)^i})$. Each exponent between $0$ and $(n+1)^h-1$ has a unique base-$(n+1)$ expansion with $h$ digits, so its coefficient is a product of nonzero coefficients. Thus $n_h=(n+1)^h-1$ and $\wt(P_h^2)\le k^h=(n_h+1)^\theta$.
+\end{proof}
+
+\section{Exact certificate and provenance}\label{sec:cert}
+The accompanying data specify the 128 polynomials through the sparse integer numerators $S_i=(1-z)^4B_{v_i}$. They have 11,092 terms in total. These numerators can be used in place of the local system in Lemma~\ref{local}. We describe the finite tests that certify their advertised properties at the actual periods.
+
+Write $S=\sum_j a_jz^j$. The four integer equalities $\sum_j a_j\binom jm=0$ for $0\le m<4$ show that $(1-z)^4$ divides $S$. Since the divisor is monic, $B=S/(1-z)^4$ has integer coefficients. For $S^2=\sum_j t_j z^j$, ordinary convolution gives
+\begin{equation}\label{interpolate}
+                     [z^k]B^2=\sum_{j\le k}t_j\binom{k-j+7}{7}.
+\end{equation}
+On a half-open interval containing no change in the active prefix $j\le k$, this is a polynomial in $k$ of degree at most seven. More precisely, put $d=\deg B$, $\ell=\lfloor v/3\rfloor+1$, $h=\lfloor(2v-1)/3\rfloor$. For every $0\le q\le\lfloor2d/v\rfloor$, intersect $[qv+\ell,qv+h+1)$ with $[0,2d+1)$ and split it at every interior exponent of $S^2$. A term at the left endpoint is active there, and a term at the right endpoint first enters the next interval. On each resulting interval eight distinct integer zeros establish vanishing everywhere; when it contains fewer than eight integers, test them all. This accounts for all forbidden coefficients, with 27,910 exact evaluations over the 128 squares. A separately written checker compares the coefficients of the polynomial in \eqref{interpolate} directly on long intervals.
+
+For $B$ itself the analogous formula has degree three on each interval. Split the cyclic sums at the exponents of $S$ reduced modulo $v$, and isolate residue zero. The cyclic values are cubic on each run, and the derivative sums $\sum_{i\equiv r\bmod v}i[z^i]B$ are of degree at most four. Exact interpolation tests their identities in 3,324 evaluations. Newton interpolation with integral forward differences also bounds the absolute coefficient sum on each run. The certificate verifies each local height, both length comparisons in Proposition~\ref{dense}, and the integer inequalities for the final support bound.
+
+For clarity, if $d_A=\deg A$ and $w_i=\wt(S_i)$, the data-dependent bound is obtained by putting
+\begin{align*}
+ q_0&=(1+\lfloor2d_A/N\rfloor)\prod_i(v_i-|R_i|),\\
+ q_*&=5q_0+18b\prod_i w_i+3(8b+2)9^t,\qquad
+ U=5(2M-1)+3q_* .
+\end{align*}
+Here $\wt(P^2)\le U$. Exact integer square roots give
+\[
+           0.500000000000000018\le U/\sqrt n<0.500000000000000019 .
+\]
+The exact support size of $P^2$ remains unknown. Two implementations also give $P(2)\equiv386769428\bmod 1000000007$ as a reproducibility check.
+
+The repository includes a partial formalization in Lean 4.30.0 using the bundled standard library. The general lemmas cover the middle-third sum-free property, the integer root bound used for scaling, and the coefficient argument for the product $E(x)V(\lambda x)$. The numerical development checks the product of the recorded periods, the degree, and the inequality $(1000U_0)^2<501^2 n$ for the conservative support bound $U_0$ obtained from \eqref{qstar}. Its transfer theorem requires a proof that the input weight is at most $U_0$. The local rational-function construction, CRT argument, and derivation of that hypothesis for $P^2$ are established in this paper. The prime and local polynomial certificates are verified by separate integer programs.
+
+DannyExperiments initiated and directed the investigation. OpenAI Codex developed the construction and its proof and prepared the reproducibility materials. Claude Opus 5.5 contributed to the joint investigation and independently audited the archived proof and certificate. Human specialist review and benchmark evaluation are outstanding. Epoch requests an expanded coefficient array, which would contain more than $10^{5000}$ integers for this witness. The accompanying artifact supplies its compact specification.
+
+\bibliographystyle{amsplain}
+\bibliography{references}
+\end{document}

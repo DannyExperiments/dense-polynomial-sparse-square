@@ -2,7 +2,7 @@
 
 Can an integer polynomial of degree n have a nonzero coefficient in every position while its square has fewer than √n nonzero coefficients? **Yes.** The paper specifies one finite polynomial by 128 compact factors. Its square has strictly fewer than 0.501√n nonzero coefficients. The degree has 5,798 decimal digits.
 
-[Read the paper (PDF)](proof/sparse-squares.pdf) · [LaTeX source](proof/sparse-squares.tex) · [Epoch's problem and submission instructions](https://epoch.ai/frontiermath/open-problems/polynomial-square-few-coefficients)
+[Read the paper (PDF)](paper/manuscript.pdf) · [LaTeX source](paper/manuscript.tex) · [Original question](evidence/epoch-problem.md) · [Epoch's problem and submission instructions](https://epoch.ai/frontiermath/open-problems/polynomial-square-few-coefficients)
 
 ## How the construction works
 
