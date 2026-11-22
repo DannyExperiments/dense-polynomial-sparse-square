@@ -1,0 +1,29 @@
+Verified all 128 periods, the 5798-digit degree, and the strict 501/1000 bound.
+p=7  m=2  deg=53  cyclic=7/7  absent=3..4  jets=PASS  square_remainder=PASS  fourth=44
+tamper p=7: A[1] += 1; detected failures = cyclic, missing, jet, constant_square
+p=11  m=4  deg=84  cyclic=11/11  absent=4..7  jets=PASS  square_remainder=PASS  fourth=68
+p=13  m=4  deg=112  cyclic=13/13  absent=5..8  jets=PASS  square_remainder=PASS  fourth=86
+p=17  m=6  deg=130  cyclic=17/17  absent=6..11  jets=PASS  square_remainder=PASS  fourth=76
+p=29  m=10  deg=222  cyclic=29/29  absent=10..19  jets=PASS  square_remainder=PASS  fourth=76
+p=31  m=10  deg=268  cyclic=31/31  absent=11..20  jets=PASS  square_remainder=PASS  fourth=98
+p=53  m=18  deg=406  cyclic=53/53  absent=18..35  jets=PASS  square_remainder=PASS  fourth=76
+p=67  m=22  deg=580  cyclic=67/67  absent=23..44  jets=PASS  square_remainder=PASS  fourth=98
+p=101  m=34  deg=774  cyclic=101/101  absent=34..67  jets=PASS  square_remainder=PASS  fourth=76
+p=127  m=42  deg=1100  cyclic=127/127  absent=43..84  jets=PASS  square_remainder=PASS  fourth=98
+p=257  m=86  deg=1970  cyclic=257/257  absent=86..171  jets=PASS  square_remainder=PASS  fourth=76
+{'primes': (5, 7), 'N': 35, 'degU': 379, 'local_Q_weight': 277, 'wt_UH': 404, 'k': 20, 'deg_V': 420, 'lambda': 2, 'W': 503, 'M': 19, 'P_degree': 1168, 'nonzero_P_coefficients': 1169, 'max_P_coefficient_bits': 467, 'R_weight': 1007, 'P_squared_weight': 2337, 'strict_threshold': False, 'exact_identity': True, 'modular_crosschecks': [65521, 1000003]}
+7 cyclic square, omitted ordinary sections, all first jets verified
+13 cyclic square, omitted ordinary sections, all first jets verified
+23 cyclic square, omitted ordinary sections, all first jets verified
+37 cyclic square, omitted ordinary sections, all first jets verified
+101 cyclic square, omitted ordinary sections, all first jets verified
+SHA-256 of local certificates: f7e6aea9e98c666a7bcf7dcde5186d872234b047302d799918120331a54d4cee
+All 128 prime periods certified
+Range of actual sparse numerator weights: 76 98
+All cyclic values and jets certified by polynomial identities from 3324 exact samples
+All forbidden square coefficients certified by polynomial identities from 27910 exact samples
+All 128 local heights and both endpoint length conditions certified
+Strict global support bound certified: True
+Floor of 10^18 times the upper-bound ratio: 500000000000000018
+All 128 sparse numerators pass degree, integrality, value, derivative and height checks.
+All four full-witness finite-field evaluations agree with the separate section evaluator.

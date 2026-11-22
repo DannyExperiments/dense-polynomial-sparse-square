@@ -1,0 +1,6 @@
+name = "sparse-square"
+version = "0.1.0"
+defaultTargets = ["SparseSquare"]
+
+[[lean_lib]]
+name = "SparseSquare"

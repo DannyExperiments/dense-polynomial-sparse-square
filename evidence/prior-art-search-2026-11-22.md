@@ -1,0 +1,28 @@
+# Dense polynomials with sparse squares
+## Public prior-art search, 22 November 2026
+
+The question is whether a dense integer polynomial P of degree n can have strictly fewer than √n nonzero coefficients in its square. A rational dense example would suffice by clearing denominators. A bound with an unspecified constant times √n, a polynomial with gaps, or a square with fewer terms than the original polynomial does not on its own give the requested witness. A dense family with square weight O(n^c) for c<1/2 would suffice.
+
+[Epoch question and submission instructions](https://epoch.ai/frontiermath/open-problems/polynomial-square-few-coefficients#prompt)
+
+**Finding.** No earlier public witness or theorem implying this exact result was located in the searches below. Moderate confidence in apparent novelty. The search cannot establish first discovery. It dates public records and tests their mathematical content. It does not authenticate the new manuscript or confer benchmark acceptance.
+
+### Closest results
+
+- Mahmoud Elgamal, 11 November 2026. Theorem 1.2 proves an upper bound on square weight for polynomials with k nonzero coefficients, with leading constant 4√3. Section 7 directly addresses the Epoch inequality, gives the limiting ratio 4√3 for the construction, and reports a minimum of 4.11 in a bounded search among dense examples. The paper anticipates the strategy of a sparser quotient after a cyclic lift. Its geometric-series construction and the square-root order of growth are prior art. Its limiting constant alone cannot rule out an exceptional finite example, which is why the separate discussion and data are relevant. The Zenodo latest-version endpoint resolved to the same record on the search date. [Manuscript and DOI](https://doi.org/10.5281/zenodo.24128991)
+- The wjwesley/SparseSquares repository contains two dense integer arrays posted 1 October 2026. I recomputed their square weights exactly. The smaller has degree 30,703 and square weight 1,205. The larger has degree 3,007,003 and square weight 12,005. Their respective ratios to √degree are 6.87696 and 6.92301. Both fail the strict test. [Pinned repository](https://github.com/wjwesley/SparseSquares/tree/489a448ca351651ac7fbba186c88892d1752d01d)
+- Unsolved Lab publicly investigated this specific question in September 2026. Its reported integer exponent is approximately 0.812807. Its report includes both search coverage and untested cases. [Research log](https://unsolvedlab.com/problems/sparse-squares)
+- The Erdős Problems discussion of #485 distinguishes the lower-bound question settled by Schinzel from upper-bound constructions of dense polynomials. The cited Verdenius exponents exceed 1/2. Abbott's small-degree classification concerns squares having fewer terms than their roots. [Forum](https://www.erdosproblems.com/forum/thread/485) · [Abbott](https://doi.org/10.1090/S0025-5718-00-01294-1) · [Coppersmith and Davenport](https://doi.org/10.4064/aa-58-1-79-87) · [Schinzel and Zannier](https://doi.org/10.4171/RLM/534)
+- Other adjacent hits include a Math Stack Exchange question about the difference of two support sizes, a MathOverflow question about cancellation in bounded individual degree, and arXiv work on recovering lacunary perfect powers. [Math Stack Exchange](https://math.stackexchange.com/questions/1369073/about-sparse-polynomial-squares) · [MathOverflow](https://mathoverflow.net/questions/496972/understanding-monomial-cancellation-in-f2-for-sparse-polynomials-with-bounded) · [arXiv](https://arxiv.org/abs/0901.1848)
+
+### Search coverage and limits
+
+Queried the arXiv API by title, author and keywords, Crossref by bibliographic title, DataCite for title and abstract matches, Zenodo's record and version API, OpenAlex's forward citations for Elgamal, Abbott, Coppersmith–Davenport and Schinzel–Zannier, GitHub repository and issue search, and the Stack Exchange API for MathOverflow and Mathematics. Also searched the web for the exact Epoch title and slug, equivalent mathematical formulations, public discussions, and references using complete, dense, sparse, lacunary and fewnomial terminology. GitHub repository metadata, selected source files and both Wesley arrays were inspected. Two Crossref title queries were rate-limited. Other indexes and the manuscript bibliography supplied the relevant historical records. No claim of exhaustive full-text GitHub or social-platform coverage is made. Unindexed material, recent uploads, private work and differently described results remain possible.
+
+Representative search terms include “polynomial-square-few-coefficients”, “dense polynomials” with “sparse squares”, “polynomials whose squares have few terms”, “Erdős 485” with “Verdenius”, “square-root barrier” with “Hermite”, and “dense polynomial” with “fewer than sqrt(n)”. For the arXiv author searches, a blank result was not taken as evidence against the existence of a preprint on another platform.
+
+### How the repository counts were checked
+
+For each downloaded JSON array, each coefficient was checked to be a nonzero integer. With r=101 or 1001 as in its filename, H=(1−x)²(1−xʳ)P had precisely 16 nonzero coefficients. H² was formed by ordinary exact integer convolution of those terms. Four cumulative sums over consecutive exponents and two cumulative sums along each residue modulo r recovered every coefficient of P², since (1−x)⁴(1−xʳ)²P²=H². The first 30 coefficients were compared with naive multiplication and the last with the square of the leading coefficient. Every coefficient up to degree 2n was counted.
+
+These are independent computations on the earlier repository's data. They do not substitute for expert review of our proof.

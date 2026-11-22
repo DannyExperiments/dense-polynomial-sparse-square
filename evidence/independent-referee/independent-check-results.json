@@ -1,0 +1,17 @@
+{
+  "status": "all independent checks passed",
+  "mask_sha256": "f7e6aea9e98c666a7bcf7dcde5186d872234b047302d799918120331a54d4cee",
+  "factors": 128,
+  "numerator_terms": 11092,
+  "squared_numerator_terms": 45310,
+  "long_forbidden_runs_tested_as_polynomial_identities": 2044,
+  "short_forbidden_runs_tested_exhaustively": 11558,
+  "short_run_coefficient_evaluations": 11558,
+  "forbidden_ordinary_coefficients_covered": 42169625887381509185208980,
+  "degree_digits": 5798,
+  "period_digits": 2901,
+  "degree_prefix": "59938161935845437417016975899054",
+  "degree_suffix": "94012149944657136323036742431875",
+  "floor_of_10_to_18_times_U_over_sqrt_n": 500000000000000018,
+  "strict_501_over_1000_bound": true
+}
