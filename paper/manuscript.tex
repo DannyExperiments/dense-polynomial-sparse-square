@@ -222,7 +222,13 @@ Here $\wt(P^2)\le U$. Exact integer square roots give
 \]
 The exact support size of $P^2$ remains unknown. Two implementations also give $P(2)\equiv386769428\bmod 1000000007$ as a reproducibility check.
 
-The repository includes a partial formalization in Lean 4.30.0 using the bundled standard library. The general lemmas cover the middle-third sum-free property, the integer root bound used for scaling, and the coefficient argument for the product $E(x)V(\lambda x)$. The numerical development checks the product of the recorded periods, the degree, and the inequality $(1000U_0)^2<501^2 n$ for the conservative support bound $U_0$ obtained from \eqref{qstar}. Its transfer theorem requires a proof that the input weight is at most $U_0$. The local rational-function construction, CRT argument, and derivation of that hypothesis for $P^2$ are established in this paper. The prime and local polynomial certificates are verified by separate integer programs.
+To replay the checks, extract the accompanying source archive and open its top-level directory. Run \texttt{sh proof/verify.sh} for the supplied verification suite. For a separate implementation, run
+\begin{center}
+\texttt{python3 -I -B evidence/independent-referee/independent\_check.py proof}
+\end{center}
+Both commands use Python's standard library and the included data. They work offline.
+
+The archive includes a partial formalization in Lean 4.30.0 using the bundled standard library. The general lemmas cover the middle-third sum-free property, the integer root bound used for scaling, and the coefficient argument for the product $E(x)V(\lambda x)$. The numerical development checks the product of the recorded periods, the degree, and the inequality $(1000U_0)^2<501^2 n$ for the conservative support bound $U_0$ obtained from \eqref{qstar}. Its transfer theorem requires a proof that the input weight is at most $U_0$. The local rational-function construction, CRT argument, and derivation of that hypothesis for $P^2$ are established in this paper. The prime and local polynomial certificates are verified by separate integer programs.
 
 DannyExperiments initiated and directed the investigation. ChatGPT 6.2 Astra, running in the Codex harness, developed the construction and its proof and prepared the reproducibility materials. Claude Opus 5.5 contributed to the joint investigation and independently audited the archived proof and certificate. Human specialist review and benchmark evaluation are outstanding. Epoch requests an expanded coefficient array, which would contain more than $10^{5000}$ integers for this witness. The accompanying artifact supplies its compact specification.
 
